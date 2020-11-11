@@ -1,6 +1,6 @@
+
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,13 +9,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/img/logo.jpg" type="image/x-icon">
     <title>Club Management System</title>
 
+<style>
 
+#abc{
+    color:yellow
+}
+</style>
 </head>
 
 <body>
+    {% load static %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Club Management System</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -29,7 +35,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -37,10 +43,10 @@
                         Services
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Request Fund</a>
-                        <a class="dropdown-item" href="#">Request Permission</a>
-                        <a class="dropdown-item" href="#">Check Request Status</a>
-                        <a class="dropdown-item" href="#">Cancel Request</a>
+                        <a class="dropdown-item" href="/forms">Request Fund</a>
+                        <a class="dropdown-item" href="/forms">Request Permission</a>
+                        <a class="dropdown-item" href="/status">Check Request Status</a>
+                        <a class="dropdown-item" href="/status">Cancel Request</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Support</a>
                         <a class="dropdown-item" href="#">Write for us</a>
@@ -48,14 +54,13 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <div class="mx-2">
-                <button type="button" class="btn btn-success my-2 my-sm-2">Login</button>
-                <button type="button" class="btn btn-danger my-2 my-sm-2">SignUp</button>
-            </div>
+                    {% if user.is_authenticated %}
+                    <li id="abc">Hello, {{user.first_name}}</li>
+                    <li><a href="accounts/logout">Logout</a></li>
+                    {% else %}	
+                    <li><a href="accounts/register">Register</a></li>
+                    <li><a href="accounts/login">Login</a></li>
+                    {% endif %}
         </div>
     </nav>
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -66,21 +71,21 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="home1.jpg" class="d-block w-100" alt="...">
+                <img src="/static/img/home1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Approval is now Easy</h3>
                     <p>Want any Permission?, Submit Request here.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="home2.jpg" class="d-block w-100" alt="...">
+                <img src="/static/img/home2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Environment Friendly</h3>
                     <p>No Paper, Just Web.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="home3.jpg" class="d-block w-100" alt="...">
+                <img src="/static/img/home3.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Saves Time</h3>
                     <p>Your Comfort, our Duty.</p>
@@ -102,20 +107,20 @@
             <!-- Three columns of text below the carousel -->
             <div class="row">
                 <div class="col-lg-4">
-                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="funding.jpg">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="/static/img/funding.jpg">
                     <h2>Funding</h2>
                     <p>Want to apply for any Funding Request?, No need to Go one office to Other, Just Click Here and
                         Apply.</p>
                     <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="permission1.jpg">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="/static/img/permission1.jpg">
                     <h2>Permission</h2>
                     <p>Want to apply for any Permission?, No need to Waste Paper, Just Click Here to Apply and Join the leauge to Save Environment.</p>
                     <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="status.jpg">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="/static/img/status.jpg">
                     <h2>Status</h2>
                     <p>Want to know the Status of your Application? No need to Waste your precious Time, Just Click Here
                         and check the Status.</p>

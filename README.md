@@ -1,2 +1,1 @@
-# sms
-society management system
+# cms
